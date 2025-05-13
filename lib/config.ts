@@ -1,4 +1,7 @@
+import dotenv from "dotenv"
 import { Pool } from "pg"
+
+dotenv.config()
 
 // Initialize database connection
 export const pool = new Pool({
@@ -7,8 +10,7 @@ export const pool = new Pool({
   database: process.env.PGDATABASE,
   password: process.env.PGPASSWORD,
   port: Number(process.env.PGPORT),
-  // ssl: {
-  //   require: true,
-  //   rejectUnauthorized: false,
-  // },
+  ssl: process.env.NODE_ENV === "production"
+    ? { rejectUnauthorized: false }
+    : false,
 });
