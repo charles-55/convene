@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: "Convene - Team Availability Scheduler",
   description: "Find the perfect meeting time for your team",
   keywords: ["convene", "team", "availability", "scheduler", "meeting", "time"],
+  icons: {
+    icon: "/logo.png",
+  },
 }
 
 export default function RootLayout({
