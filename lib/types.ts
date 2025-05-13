@@ -21,7 +21,7 @@ export interface Participant {
 
 export interface MeetingOption {
   day: string
-  time: string
+  timeRange: string
   availableParticipants: string[]
   availableCount: number
 }
