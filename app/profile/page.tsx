@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Logo } from "@/components/logo"
 import { UserNav } from "@/components/user-nav"
+import { toast } from "@/hooks/use-toast"
 
 import { getUserRoomsFromCookies, requireAuth } from "@/lib/auth"
 import { leaveRoom } from "@/lib/rooms"
@@ -36,8 +37,21 @@ export default function ProfilePage() {
   const handleLeaveRoom = async (roomCode: string) => {
     try {
       await leaveRoom(roomCode)
+      setRooms((prevRooms) => prevRooms.filter((room) => room.roomCode !== roomCode))
+      toast({
+        title: "Room left",
+        description: "You have successfully left the room",
+      })
+      setTimeout(() => {
+        router.refresh()
+      }, 3000)
     } catch (error) {
       console.error("Leave room error:", error)
+      toast({
+        title: "Error leaving room",
+        description: "An error occurred while leaving the room",
+        variant: "destructive",
+      })
     }
   }
 

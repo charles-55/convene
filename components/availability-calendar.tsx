@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { toast } from "@/hooks/use-toast"
 import { cn } from "@/lib/utils"
@@ -13,6 +14,7 @@ interface AvailabilityCalendarProps {
 }
 
 export function AvailabilityCalendar({ roomCode, initialAvailability, setError }: AvailabilityCalendarProps) {
+  const router = useRouter()
   const [availability, setAvailability] = useState<Record<string, string[]>>(initialAvailability)
   const [isSelecting, setIsSelecting] = useState(false)
   const [isRemoving, setIsRemoving] = useState(false)
@@ -82,6 +84,9 @@ export function AvailabilityCalendar({ roomCode, initialAvailability, setError }
           title: "Availability updated",
           description: "Your availability has been saved",
         })
+        setTimeout(() => {
+          router.refresh()
+        }, 3000)
       } else {
         setError(result.error || "Failed to update availability")
       }
