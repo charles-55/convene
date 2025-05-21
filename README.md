@@ -39,12 +39,6 @@
 - **Backend**: Node.js
 - **Database**: PostgreSQL
 
-## 🧠 Future Enhancements
-
-- Calendar sync (Google Calendar, Outlook)
-- Time zone support
-- Email or app reminders
-
 ## 🤝 Contributing
 
 We welcome contributions to improve Convene!
